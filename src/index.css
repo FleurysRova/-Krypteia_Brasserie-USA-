@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles de base pour HTML, Body et l'élément racine de React (#root) */
+/* Ces styles garantissent que l'application occupe toute la hauteur et largeur de la fenêtre */
+html, body, #root {
+  height: 100%; /* Utilise 100% de la hauteur du parent */
+  width: 100%;  /* Utilise 100% de la largeur du parent */
+  margin: 0;    /* Supprime les marges par défaut du navigateur */
+  padding: 0;   /* Supprime les paddings par défaut du navigateur */
+  /* overflow-x: hidden; */ /* Optionnel: Empêche le défilement horizontal si non désiré */
+}
+
+/* Styles pour la balise body */
+body {
+  /* Supprime les styles de flexbox qui centrent le contenu,
+     car l'application a une structure header/main/footer */
+  display: block; /* Réinitialise display à sa valeur par défaut pour un flux normal */
+  min-width: 320px; /* Assure une largeur minimale pour la responsivité */
+  min-height: 100vh; /* Assure que le corps prend au moins toute la hauteur du viewport */
+  /* Utilise une police plus moderne pour l'ensemble de l'application */
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Styles pour les variables CSS et les thèmes clair/sombre */
+:root {
+  color-scheme: light dark; /* Permet au navigateur de gérer les thèmes */
+  color: rgba(255, 255, 255, 0.87); /* Couleur de texte par défaut pour le thème sombre */
+  background-color: #242424; /* Couleur de fond par défaut pour le thème sombre */
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* Styles pour les liens */
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+/* Styles pour les titres H1 */
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* Styles pour les boutons */
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Styles pour le thème clair (media query) */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547; /* Couleur de texte pour le thème clair */
+    background-color: #ffffff; /* Couleur de fond pour le thème clair */
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+/* Réinitialisation de la box-sizing pour tous les éléments */
+* {
+  box-sizing: border-box; /* S'assure que padding et border sont inclus dans la largeur/hauteur */
+}
