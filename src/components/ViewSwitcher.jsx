@@ -1,40 +1,23 @@
 import React from 'react';
+import '../pages/HomePage.css';
 
 function ViewSwitcher({ viewMode, setViewMode }) {
     return (
-        <div style={{ marginBottom: '25px', textAlign: 'center' }}>
+        // Conteneur principal du switch
+        <div className="view-switcher-container">
             <button
+                // Applique la classe 'active' si le mode est 'map'
+                className={`view-switcher-button ${viewMode === 'map' ? 'active' : ''}`}
                 onClick={() => setViewMode('map')}
-                style={{
-                    marginRight: '10px',
-                    padding: '10px 20px',
-                    border: '1px solid #007bff',
-                    borderRadius: '20px',
-                    cursor: 'pointer',
-                    backgroundColor: viewMode === 'map' ? '#007bff' : 'white',
-                    color: viewMode === 'map' ? 'white' : '#007bff',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    transition: 'background-color 0.3s, color 0.3s'
-                }}
             >
-                Vue Carte
+                Carte
             </button>
             <button
+                // Applique la classe 'active' si le mode est 'list'
+                className={`view-switcher-button ${viewMode === 'list' ? 'active' : ''}`}
                 onClick={() => setViewMode('list')}
-                style={{
-                    padding: '10px 20px',
-                    border: '1px solid #007bff',
-                    borderRadius: '20px',
-                    cursor: 'pointer',
-                    backgroundColor: viewMode === 'list' ? '#007bff' : 'white',
-                    color: viewMode === 'list' ? 'white' : '#007bff',
-                    fontSize: '16px',
-                    fontWeight: 'bold',
-                    transition: 'background-color 0.3s, color 0.3s'
-                }}
             >
-                Vue Liste
+                Tableau
             </button>
         </div>
     );

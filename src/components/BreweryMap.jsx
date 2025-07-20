@@ -1,31 +1,98 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+// src/components/BreweryMap.js
 
-function BreweryMap({ breweries, setSelectedBrewery }) {
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+
+// Fix pour les icônes Leaflet (peut être nécessaire si non fait globalement dans App.js)
+// Déjà fait dans App.js, mais si vous rencontrez des soucis d'icône, vous pouvez le décommenter
+/*
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
+    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
+    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
+});
+*/
+
+// Composant interne pour gérer la logique de la carte et du zoom
+// Il a besoin d'accéder à l'instance de la carte via useMap()
+function MapUpdater({ selectedBrewery }) {
+    const map = useMap(); // Hook pour accéder à l'instance de la carte
+
+    useEffect(() => {
+        if (selectedBrewery && selectedBrewery.latitude && selectedBrewery.longitude) {
+            const lat = parseFloat(selectedBrewery.latitude);
+            const lng = parseFloat(selectedBrewery.longitude);
+
+            if (!isNaN(lat) && !isNaN(lng)) {
+                // Utilise flyTo pour une animation de zoom douce
+                // Zoom level 15 est un bon niveau pour une ville/quartier
+                map.flyTo([lat, lng], 15);
+            }
+        }
+    }, [selectedBrewery, map]); // Déclencher l'effet quand selectedBrewery change ou la carte est prête
+
+    return null; // Ce composant ne rend rien visuellement
+}
+
+
+function BreweryMap({ breweries, setSelectedBrewery, selectedBrewery: propSelectedBrewery }) {
+    // Coordonnées de Denver, Colorado (centre par défaut)
+    const defaultCenter = [39.7392, -104.9903];
+    const defaultZoom = 4; // Zoom initial pour voir une grande partie des USA
+
     return (
         <MapContainer
-            center={[39.8283, -98.5795]} // Centre des États-Unis
-            zoom={4}
-            style={{ height: '500px', width: '100%', borderRadius: '10px', overflow: 'hidden', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}
+            center={defaultCenter}
+            zoom={defaultZoom}
+            style={{ height: '600px', width: '100%', borderRadius: '8px', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}
+            scrollWheelZoom={true} // Permet de zoomer avec la molette de la souris
         >
             <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             />
-            {breweries.map(brewery => (
-                <Marker
-                    key={brewery.id}
-                    position={[parseFloat(brewery.latitude), parseFloat(brewery.longitude)]}
-                    eventHandlers={{
-                        click: () => setSelectedBrewery(brewery),
-                    }}
-                >
-                    <Popup>
-                        <b>{brewery.name}</b><br />
-                        {brewery.city}, {brewery.state_province}
-                    </Popup>
-                </Marker>
-            ))}
+
+            {/* Inclure le composant MapUpdater pour le zoom programmé */}
+            <MapUpdater selectedBrewery={propSelectedBrewery} />
+
+            {breweries.map((brewery) => {
+                const lat = parseFloat(brewery.latitude);
+                const lng = parseFloat(brewery.longitude);
+
+                // Vérifiez que les coordonnées sont valides
+                if (isNaN(lat) || isNaN(lng)) {
+                    return null; // Ne pas afficher le marqueur si les coordonnées sont invalides
+                }
+
+                return (
+                    <Marker
+                        key={brewery.id}
+                        position={[lat, lng]}
+                        // eventHandlers permet de gérer les événements sur le marqueur
+                        eventHandlers={{
+                            click: () => {
+                                setSelectedBrewery(brewery); // Met à jour l'état selectedBrewery global
+                            },
+                        }}
+                    >
+                        <Popup>
+                            <h3>{brewery.name}</h3>
+                            <p>{brewery.street}, {brewery.city}</p>
+                            {brewery.phone && <p>Téléphone: {brewery.phone}</p>}
+                            {brewery.website_url && (
+                                <p>
+                                    <a href={brewery.website_url} target="_blank" rel="noopener noreferrer">
+                                        Site Web
+                                    </a>
+                                </p>
+                            )}
+                        </Popup>
+                    </Marker>
+                );
+            })}
         </MapContainer>
     );
 }

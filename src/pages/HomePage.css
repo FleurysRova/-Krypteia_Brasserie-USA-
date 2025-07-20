@@ -1,61 +1,70 @@
-/* src/components/HomePage.css */
-
-/* Styles généraux pour le corps de la page */
-.homepage-container {
-    background-color: #f4f7f6; /* Couleur de fond légère */
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police plus moderne */
-    color: #333; /* Couleur de texte par défaut */
-}
+/* src/pages/HomePage.css */
 
 /* Styles de l'en-tête */
 .homepage-header {
-    background-color: #2c3e50; /* Bleu foncé élégant */
-    padding: 25px 20px;
+    background-color: #2c3e50; /* Bleu foncé élégant (presque gris foncé) */
+    padding: 15px 20px; /* Réduit le padding pour le rendre moins grand */
     color: white;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
-    position: sticky; /* Rendre le header collant */
+    position: sticky;
     top: 0;
-    z-index: 1000; /* Assurer qu'il reste au-dessus des autres éléments */
+    z-index: 1000;
 }
 
-.homepage-header h1 {
-    margin: 0 0 15px 0;
-    font-size: 2.5em; /* Grande taille pour le titre */
-    letter-spacing: 1.5px;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+/* Styles du titre dans le header */
+.header-title {
+    margin: 0; /* Supprime la marge inférieure */
+    font-size: 1.8em; /* Réduit la taille du titre */
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    min-width: 150px;
+}
+
+.homepage-header a {
+    text-decoration: none;
+    color: white; /* Assure que le lien du titre est blanc */
+}
+
+/* Conteneur flex pour les éléments du header (titre, nav, contrôles) */
+.header-content-wrapper {
+    display: flex;
+    justify-content: space-between; /* Espace équitablement le titre, nav et contrôles */
+    align-items: center;
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne sur petits écrans */
+    max-width: 1300px; /* Augmente la largeur max pour plus d'espace */
+    margin: 0 auto;
+    gap: 15px; /* Espace entre les groupes d'éléments (titre, nav, contrôles) */
 }
 
 /* Styles de la navigation */
 .homepage-nav {
-    margin: 10px 0;
+    margin: 0;
+    flex-grow: 1; /* Permet à la navigation de prendre plus d'espace */
+    text-align: center; /* Centre les liens de navigation */
 }
 
 .homepage-nav-link {
-    color: #8be9fd; /* Bleu clair pour les liens */
+    color: #aebacd;
     text-decoration: none;
-    margin: 0 20px;
-    font-size: 1.15em;
-    font-weight: 600; /* Plus épais */
+    margin: 0 15px;
+    font-size: 1em;
+    font-weight: 500;
     transition: color 0.3s ease, transform 0.2s ease;
-    position: relative; /* Pour l'effet de soulignement */
+    position: relative;
 }
 
 .homepage-nav-link:hover {
-    color: #61dafb; /* Couleur au survol */
-    transform: translateY(-2px);
+    color: #f0f0f0;
+    transform: translateY(-1px);
 }
 
-/* Effet de soulignement moderne */
 .homepage-nav-link::after {
     content: '';
     position: absolute;
     width: 0;
     height: 2px;
-    background: #61dafb;
+    background: #f0f0f0;
     left: 50%;
     bottom: -5px;
     transition: width 0.3s ease, left 0.3s ease;
@@ -66,169 +75,225 @@
     left: 0;
 }
 
-/* Styles du contenu principal */
-.homepage-main-content {
-    flex-grow: 1; /* Permet au contenu de prendre l'espace disponible */
-    padding: 40px 25px;
-    max-width: 1000px; /* Augmentation de la largeur max */
-    margin: 30px auto;
-    background-color: white;
-    border-radius: 12px; /* Rayon de bordure plus doux */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-    line-height: 1.7;
+/* Conteneur pour la barre de recherche et le switcher de vue */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espace réduit entre la barre de recherche et le bouton switch */
 }
 
-.homepage-section-title {
-    color: #007bff; /* Bleu primaire */
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 12px;
-    margin-bottom: 25px;
-    font-size: 2em;
-    font-weight: 700;
+/* Styles pour la barre de recherche spécifiquement dans le header */
+.header-controls .search-bar input { /* Cible l'input de SearchBar à l'intérieur de header-controls */
+    padding: 8px 12px; /* Réduit le padding pour un look plus compact dans le header */
+    border-radius: 20px;
+    font-size: 0.9em; /* Légèrement plus petit */
+    width: 200px; /* Largeur fixe, ajuster avec les media queries */
+    min-width: 120px; /* Largeur minimale pour ne pas être trop petit */
+    border: 1px solid #ddd;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 
-.homepage-main-content p {
-    margin-bottom: 15px;
-    font-size: 1.05em;
+/* STYLES POUR LE SWITCH GLISSANT */
+.view-switcher-container {
+    display: flex;
+    background-color: #e0e0e0; /* Couleur de fond par défaut du conteneur */
+    border-radius: 25px; /* Bords arrondis pour le conteneur */
+    overflow: hidden; /* Important pour masquer ce qui dépasse des bords arrondis */
+    padding: 3px; /* Espacement intérieur pour que les boutons ne touchent pas les bords */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Ombre interne pour un effet de profondeur */
+    transition: background-color 0.3s ease; /* Transition douce pour la couleur de fond si elle change */
 }
 
-.homepage-main-content ul {
-    list-style: none; /* Supprime les puces par défaut */
-    padding: 0;
-    margin: 20px 0;
-}
-
-.homepage-main-content ul li {
-    background-color: #e6f7ff; /* Légère couleur de fond pour les items de liste */
-    margin-bottom: 10px;
-    padding: 12px 15px;
-    border-left: 4px solid #007bff; /* Bande bleue sur le côté */
-    border-radius: 5px;
-    font-size: 1.05em;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-}
-
-.homepage-main-content a {
-    color: #007bff; /* Lien cohérent avec le thème */
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.homepage-main-content a:hover {
-    text-decoration: underline;
-}
-
-/* Style du bouton "Commencer l'Exploration" */
-.homepage-start-button {
-    display: block;
-    width: fit-content;
-    margin: 40px auto 0;
-    padding: 15px 35px;
-    background-color: #28a745; /* Bouton vert pour l'action principale */
-    color: white;
-    text-decoration: none;
-    border-radius: 30px; /* Plus arrondi */
-    font-size: 1.3em;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    border: none;
+.view-switcher-button {
+    flex: 1; /* Chaque bouton prend une part égale de l'espace disponible */
+    padding: 8px 15px; /* Padding pour la taille des boutons */
+    border: none; /* Pas de bordure par défaut */
+    border-radius: 20px; /* Bords arrondis pour les boutons eux-mêmes */
     cursor: pointer;
-    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3); /* Ombre pour le bouton */
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    white-space: nowrap; /* Empêche le texte de passer à la ligne */
+    text-align: center;
+    color: #555; /* Couleur de texte par default */
+    background-color: transparent; /* Fond transparent par défaut */
 }
 
-.homepage-start-button:hover {
-    background-color: #218838; /* Vert plus foncé au survol */
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
+.view-switcher-button.active {
+    background-color: #007bff; /* Couleur de fond vive pour l'actif */
+    color: white; /* Texte blanc sur fond bleu */
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.3); /* Légère ombre pour le bouton actif */
 }
+
+/* Effet au survol si le bouton n'est pas actif */
+.view-switcher-button:not(.active):hover {
+    background-color: #f0f0f0; /* Fond légèrement plus clair au survol */
+    color: #333; /* Texte un peu plus foncé */
+}
+/* FIN DES STYLES POUR LE SWITCH GLISSANT */
+
 
 /* Styles du pied de page */
 .homepage-footer {
-    background-color: #2c3e50; /* Couleur cohérente avec l'en-tête */
-    color: white;
+    background-color: #2c3e50; /* Couleur de fond sombre pour le footer */
+    color: white; /* Texte en blanc */
     text-align: center;
-    padding: 25px 20px;
-    margin-top: auto; /* Pousse le footer vers le bas si le contenu est court */
-    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25);
-    font-size: 0.9em;
+    padding: 25px 20px; /* Espace interne */
+    margin-top: auto; /* **TRÈS IMPORTANT** : Pousse le footer vers le bas dans un conteneur flex */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.25); /* Ombre au-dessus du footer */
+    font-size: 0.9em; /* Taille de police légèrement plus petite */
+    display: flex; /* Active Flexbox pour aligner le contenu du footer */
+    flex-direction: column; /* Par défaut, les éléments s'empilent */
+    justify-content: center; /* Centre le contenu verticalement */
+    align-items: center; /* Centre le contenu horizontalement */
+    gap: 10px; /* Espace entre les paragraphes du footer */
 }
 
-.homepage-footer a {
-    color: #8be9fd; /* Lien cohérent avec le header */
+.homepage-footer p {
+    margin: 0; /* Supprime les marges par défaut des paragraphes pour que `gap` fonctionne bien */
+}
+
+
+/* Styles pour la page d'accueil spécifique (si vous en avez un content wrapper) */
+.homepage-main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 120px); /* Ajustez selon la hauteur réelle de votre header/footer */
+    padding: 20px;
+    text-align: center;
+}
+
+.homepage-main-content h2 {
+    color: #0056b3;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.homepage-main-content p {
+    max-width: 600px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.homepage-button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
     text-decoration: none;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.3);
 }
 
-.homepage-footer a:hover {
-    text-decoration: underline;
+.homepage-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
+
 
 /* --- Media Queries pour la Responsivité --- */
 
-/* Pour les écrans plus petits (smartphones) */
-@media (max-width: 768px) {
-    .homepage-header h1 {
+/* Pour les écrans de taille moyenne (ex: tablettes en mode portrait, grands téléphones) */
+@media (max-width: 900px) {
+    .header-content-wrapper {
+        flex-direction: column; /* Empile les éléments du header */
+        align-items: center;
+        gap: 10px;
+    }
+    .homepage-nav, .header-controls {
+        width: 100%; /* Occupe toute la largeur disponible */
+        justify-content: center; /* Centre les éléments */
+    }
+    .header-controls .search-bar input {
+        width: 100%;
+        max-width: 300px;
+    }
+    .view-switcher-container {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .homepage-footer {
+        padding: 20px; /* Ajuste le padding du footer */
+    }
+    .homepage-main-content h2 {
         font-size: 2em;
     }
+    .homepage-button {
+        padding: 10px 20px;
+        font-size: 1em;
+    }
+}
 
+/* Pour les écrans plus petits (smartphones) */
+@media (max-width: 768px) {
+    .homepage-header {
+        padding: 10px 15px;
+    }
+    .header-title {
+        font-size: 1.5em;
+    }
     .homepage-nav-link {
-        margin: 0 10px;
-        font-size: 1em;
+        margin: 0 8px;
+        font-size: 0.95em;
+    }
+    .header-controls {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .header-controls .search-bar input {
+        width: 90%;
+        max-width: 250px;
+        font-size: 0.85em;
+    }
+    .view-switcher-container {
+        max-width: 250px;
+    }
+    .view-switcher-button {
+        font-size: 0.85em;
+        padding: 7px 12px;
     }
 
-    .homepage-main-content {
-        padding: 25px 15px;
-        margin: 15px auto;
-        border-radius: 0; /* Pas de bordure arrondie sur les petits écrans */
-        box-shadow: none; /* Pas d'ombre sur les petits écrans */
-    }
-
-    .homepage-section-title {
-        font-size: 1.8em;
-        margin-bottom: 15px;
-    }
-
-    .homepage-start-button {
-        padding: 12px 25px;
-        font-size: 1.1em;
-    }
-
-    .homepage-main-content ul li {
-        padding: 10px 12px;
-        font-size: 1em;
+    .homepage-footer {
+        flex-direction: column;
+        gap: 8px;
+        font-size: 0.8em;
     }
 }
 
 /* Pour les écrans encore plus petits (mobiles étroits) */
 @media (max-width: 480px) {
     .homepage-header {
-        padding: 15px 10px;
+        padding: 8px 10px;
     }
-
-    .homepage-header h1 {
+    .header-title {
+        font-size: 1.3em;
+    }
+    .homepage-nav-link {
+        margin: 0 5px;
+        font-size: 0.9em;
+    }
+    .header-controls .search-bar input {
+        width: 95%;
+    }
+    .view-switcher-container {
+        max-width: 220px;
+    }
+    .view-switcher-button {
+        font-size: 0.8em;
+        padding: 6px 10px;
+    }
+    .homepage-main-content h2 {
         font-size: 1.8em;
     }
-
-    .homepage-nav {
-        display: flex; /* Aligne les liens horizontalement */
-        flex-direction: column; /* Les met en colonne sur les petits écrans */
-        align-items: center; /* Centre les liens */
-    }
-
-    .homepage-nav-link {
-        margin: 8px 0; /* Espace vertical entre les liens */
-    }
-
-    .homepage-main-content {
-        padding: 15px;
-    }
-
-    .homepage-section-title {
-        font-size: 1.6em;
-    }
-
-    .homepage-start-button {
-        width: 90%; /* Prend plus de largeur */
-        font-size: 1em;
-        padding: 10px 20px;
+    .homepage-main-content p {
+        font-size: 0.9em;
     }
 }
