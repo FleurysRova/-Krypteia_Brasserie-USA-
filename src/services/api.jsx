@@ -28,11 +28,6 @@ export const fetchBreweries = async (page, query) => {
     }
 };
 
-/**
- * Vérifie s'il y a plus de données disponibles.
- * @param {Array} currentData - Le tableau de données actuellement reçu de l'API.
- * @returns {boolean} True s'il y a potentiellement plus de pages, False sinon.
- */
 export const hasMoreData = (currentData) => {
     return currentData.length === ITEMS_PER_PAGE;
 };

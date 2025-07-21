@@ -1,42 +1,454 @@
+/* src/App.css */
+
+/* --- Styles Généraux / Corps de l'application --- */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* --- Styles AppHeader --- */
+.app-header {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    flex-wrap: wrap;
+    gap: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.card {
-  padding: 2em;
+.krypteia-logo {
+    height: 40px; /* Ajustez la taille du logo */
+    width: auto;
+    vertical-align: middle;
 }
 
-.read-the-docs {
-  color: #888;
+.app-title {
+    margin: 0;
+    font-size: 1.8em;
+    white-space: nowrap;
+}
+
+.header-center {
+    flex-grow: 1;
+    max-width: 500px;
+    text-align: center;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+/* --- Styles SearchBar --- */
+.search-bar {
+    display: flex;
+    width: 100%;
+}
+
+.search-input {
+    flex-grow: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    font-size: 1em;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+/* --- Styles ViewSwitcher --- */
+.view-switcher-container {
+    display: flex;
+    gap: 10px;
+}
+
+.view-switcher-button {
+    padding: 10px 15px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    background-color: white;
+    color: #007bff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.view-switcher-button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+.view-switcher-button:hover:not(.active) {
+    background-color: #e9f5ff;
+}
+
+/* --- Styles BreweryList (pour le style "ancien" en colonnes) --- */
+.brewery-list-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    max-width: 1200px; /* Augmenter la largeur maximale pour 4 colonnes */
+    margin: 20px auto;
+}
+
+.brewery-list-title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.brewery-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.brewery-list-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    width: calc(25% - 15px); /* 4 éléments par ligne */
+    min-width: 250px;
+}
+
+.brewery-list-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.brewery-info-content {
+    flex-grow: 1;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.brewery-list-item h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.3em;
+    line-height: 1.2;
+}
+
+.brewery-list-item p {
+    margin: 4px 0;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.brewery-list-item p strong {
+    color: #333;
+}
+
+/* Styles du bouton "Voir détails" */
+.view-details-button {
+    background-color: #28a745; /* Vert vif */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+    white-space: nowrap;
+    align-self: flex-end;
+}
+
+.view-details-button:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.view-details-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4);
+}
+
+.brewery-list-message {
+    text-align: center;
+    color: #777;
+    margin-top: 50px;
+    font-size: 1.2em;
+}
+
+/* --- Styles BreweryDetails --- */
+.brewery-details-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.brewery-details-content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.details-close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #555;
+    line-height: 1;
+    padding: 5px;
+    transition: color 0.2s ease;
+}
+
+.details-close-button:hover {
+    color: #000;
+}
+
+.brewery-details-content h2 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+}
+
+.brewery-details-content p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.brewery-details-content p strong {
+    color: #333;
+}
+
+.brewery-details-content a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.brewery-details-content a:hover {
+    text-decoration: underline;
+}
+
+/* --- Styles PaginationControls --- */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.pagination-controls button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-controls button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+    background-color: #0056b3;
+}
+
+/* --- Styles HomePage --- */
+.home-page {
+    text-align: center;
+    padding: 50px 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #f0f2f5, #e0e5ea);
+}
+
+.home-page h1 {
+    font-size: 3em;
+    color: #007bff;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+.home-page p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 30px;
+    max-width: 600px;
+    line-height: 1.5;
+}
+
+/* --- Styles AppFooter --- */
+.app-footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    font-size: 0.9em;
+    margin-top: auto; /* Pousse le footer vers le bas */
+}
+
+
+/* --- Media Queries pour la Responsivité --- */
+
+/* AppHeader */
+@media (max-width: 768px) {
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+    }
+
+    .header-left, .header-center, .header-right {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .app-title {
+        font-size: 1.5em;
+    }
+
+    .header-center {
+        max-width: unset;
+    }
+}
+
+/* BreweryList */
+@media (max-width: 1200px) {
+    .brewery-list-item {
+        width: calc(33.33% - 13.33px); /* 3 éléments par ligne */
+        min-width: 280px;
+    }
+}
+
+@media (max-width: 900px) {
+    .brewery-list-item {
+        width: calc(50% - 10px); /* 2 éléments par ligne */
+        min-width: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .brewery-list-item {
+        width: 100%; /* 1 élément par ligne */
+        min-width: unset;
+        padding: 15px;
+    }
+    .brewery-ul {
+        gap: 15px;
+    }
+    .brewery-list-item h3 {
+        font-size: 1.4em;
+    }
+    .brewery-list-item p {
+        font-size: 0.95em;
+    }
+    .view-details-button {
+        padding: 10px 20px;
+        font-size: 1em;
+        width: 100%;
+    }
+}
+
+/* BreweryDetails */
+@media (max-width: 768px) {
+    .brewery-details-content {
+        padding: 20px;
+    }
+    .details-close-button {
+        font-size: 1.5em;
+        top: 10px;
+        right: 10px;
+    }
+    .brewery-details-content h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* HomePage */
+@media (max-width: 768px) {
+    .home-page h1 {
+        font-size: 2.5em;
+    }
+    .home-page p {
+        font-size: 1em;
+    }
 }

@@ -23,7 +23,7 @@ function BreweryList({ breweries, setSelectedBrewery, loading }) {
                             <p><strong>Type:</strong> {brewery.brewery_type}</p>
                             <p><strong>Adresse:</strong> {brewery.street ? `${brewery.street}, ` : ''}{brewery.city}, {brewery.state}, {brewery.country}</p>
                             {/* Optionnel: Affichez le téléphone si disponible */}
-                            {/* {brewery.phone && <p><strong>Téléphone:</strong> {brewery.phone}</p>} */}
+                            {brewery.phone && <p><strong>Téléphone:</strong> {brewery.phone}</p>}
                             {/* Optionnel: Affichez le site web si disponible */}
                             {brewery.website_url && (
                                 <p>
