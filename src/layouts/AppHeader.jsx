@@ -4,12 +4,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import ViewSwitcher from '../components/ViewSwitcher';
-import '../pages/HomePage.css'; // Assurez-vous que cette ligne est présente
+import '../pages/HomePage.css';
 
-function AppHeader({ onSearch, currentView, onViewChange }) {
-    // La date de dernière mise à jour de l'API doit être mise à jour manuellement ici
-    // ou récupérée d'une source externe si disponible et fiable.
-    const lastApiUpdate = "15 juillet 2024"; // REMPLACEZ PAR LA VRAIE DATE DE MISE À JOUR DE L'API
+function AppHeader({ searchTerm, setSearchTerm, onSearchSubmit, viewMode, setViewMode }) {
+    const lastApiUpdate = "15 juillet 2024"; 
 
     return (
         <header className="homepage-header">
@@ -20,18 +18,28 @@ function AppHeader({ onSearch, currentView, onViewChange }) {
 
                 <nav className="homepage-nav">
                     <Link to="/" className="homepage-nav-link">Accueil</Link>
-                    {/* Ajoutez d'autres liens de navigation ici si nécessaire */}
+                    {/* Ajout d'un lien vers la page des brasseries pour tester */}
+                    <Link to="/breweries" className="homepage-nav-link">Brasseries</Link>
+                    <Link to="/about" className="homepage-nav-link">À Propos</Link>
                 </nav>
 
                 <div className="header-controls">
-                    <SearchBar onSearch={onSearch} />
-                    <ViewSwitcher currentView={currentView} onViewChange={onViewChange} />
+                    {/* Passe les props correctes à SearchBar */}
+                    <SearchBar
+                        searchTerm={searchTerm}
+                        setSearchTerm={setSearchTerm}
+                        onSearchSubmit={onSearchSubmit} // Le nom de la prop correspond maintenant
+                    />
+                    {/* Passe les props correctes à ViewSwitcher */}
+                    <ViewSwitcher
+                        viewMode={viewMode} // Le nom de la prop correspond maintenant
+                        setViewMode={setViewMode} // Le nom de la prop correspond maintenant
+                    />
                 </div>
 
-                {/* NOUVEAU: Information sur la dernière mise à jour de l'API */}
-                <p className="api-update-info">
+                <h3 className="api-update-info">
                     Dernière mise à jour de l'API: {lastApiUpdate}
-                </p>
+                </h3>
             </div>
         </header>
     );

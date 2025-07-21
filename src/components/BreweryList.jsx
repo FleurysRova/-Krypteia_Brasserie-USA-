@@ -1,48 +1,45 @@
+// src/components/BreweryList.js
+
 import React from 'react';
+import './BreweryList.css'; // Toujours nécessaire pour les styles
 
 function BreweryList({ breweries, setSelectedBrewery, loading }) {
+    if (loading) {
+        return <p className="brewery-list-message">Chargement des brasseries...</p>;
+    }
+
+    if (!breweries || breweries.length === 0) {
+        return <p className="brewery-list-message">Aucune brasserie trouvée.</p>;
+    }
+
     return (
-        <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-            gap: '20px',
-            justifyContent: 'center'
-        }}>
-            {breweries.length > 0 ? (
-                breweries.map(brewery => (
-                    <div
-                        key={brewery.id}
-                        onClick={() => setSelectedBrewery(brewery)}
-                        style={{
-                            border: '1px solid #e0e0e0',
-                            borderRadius: '10px',
-                            padding: '20px',
-                            cursor: 'pointer',
-                            boxShadow: '0 2px 5px rgba(0,0,0,0.08)',
-                            transition: 'transform 0.2s, box-shadow 0.2s',
-                            backgroundColor: 'white',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'space-between'
-                        }}
-                        onMouseOver={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-5px)';
-                            e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.15)';
-                        }}
-                        onMouseOut={(e) => {
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = '0 2px 5px rgba(0,0,0,0.08)';
-                        }}
-                    >
-                        <h3 style={{ color: '#0056b3', margin: '0 0 10px 0' }}>{brewery.name}</h3>
-                        <p style={{ margin: '5px 0' }}>**Type:** {brewery.brewery_type}</p>
-                        <p style={{ margin: '5px 0' }}>{brewery.city}, {brewery.state_province}</p>
-                        {brewery.phone && <p style={{ margin: '5px 0' }}>**Téléphone:** {brewery.phone}</p>}
-                    </div>
-                ))
-            ) : (
-                !loading && <p style={{ textAlign: 'center', gridColumn: '1 / -1', color: '#777' }}>Aucune brasserie trouvée pour votre recherche ou sur cette page.</p>
-            )}
+        <div className="brewery-list-container"> {/* Conteneur général */}
+            <h2 className="brewery-list-title">Liste des Brasseries</h2>
+            <ul className="brewery-ul"> {/* La liste non ordonnée */}
+                {breweries.map(brewery => (
+                    <li key={brewery.id} className="brewery-list-item">
+                        <div className="brewery-info-content">
+                            <h3>{brewery.name}</h3>
+                            <p><strong>Type:</strong> {brewery.brewery_type}</p>
+                            <p><strong>Adresse:</strong> {brewery.street ? `${brewery.street}, ` : ''}{brewery.city}, {brewery.state}, {brewery.country}</p>
+                            {/* Optionnel: Affichez le téléphone si disponible */}
+                            {/* {brewery.phone && <p><strong>Téléphone:</strong> {brewery.phone}</p>} */}
+                            {/* Optionnel: Affichez le site web si disponible */}
+                            {brewery.website_url && (
+                                <p>
+                                    <a href={brewery.website_url} target="_blank" rel="noopener noreferrer">Visiter le site web</a>
+                                </p>
+                            )}
+                        </div>
+                        <button
+                            className="view-details-button" // Classe pour le style vert
+                            onClick={() => setSelectedBrewery(brewery)}
+                        >
+                            Voir détails
+                        </button>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }

@@ -1,0 +1,149 @@
+/* src/components/BreweryList.css */
+
+.brewery-list-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    max-width: 80%; /* Augmenter la largeur maximale pour 4 colonnes */
+    margin: 20px auto;
+}
+
+.brewery-list-title {
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 2em;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+}
+
+.brewery-ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* --- NOUVEAUX STYLES POUR LA DISPOSITION --- */
+    display: flex; /* Active Flexbox pour le conteneur de liste */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne suivante */
+    gap: 20px; /* Espacement entre les éléments de la liste */
+    justify-content: center; /* Centre les éléments si la dernière ligne n'est pas pleine */
+    /* --- FIN NOUVEAUX STYLES --- */
+}
+
+.brewery-list-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 15px; /* Réduire un peu le padding si nécessaire */
+    display: flex;
+    flex-direction: column; /* Empile le contenu et le bouton verticalement */
+    justify-content: space-between; /* Pousse le bouton vers le bas si le contenu est variable */
+    align-items: flex-start; /* Aligne le contenu à gauche */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    /* --- NOUVEAUX STYLES POUR LA TAILLE DES ÉLÉMENTS --- */
+    width: calc(25% - 15px); /* Pour 4 éléments par ligne avec un gap de 20px (4 * 20px = 80px, divisé par 4 = 20px par élément) */
+    min-width: 250px; /* Largeur minimale pour éviter qu'ils ne soient trop étroits sur des écrans moyens */
+    /* --- FIN NOUVEAUX STYLES --- */
+}
+
+.brewery-list-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.brewery-info-content {
+    flex-grow: 1; /* Permet au contenu des infos de prendre l'espace restant */
+    margin-bottom: 10px; /* Espace entre le contenu et le bouton */
+    width: 100%; /* S'assure que le contenu prend toute la largeur disponible dans l'item */
+}
+
+.brewery-list-item h3 {
+    color: #007bff;
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 1.3em; /* Ajuster la taille pour la densité */
+    line-height: 1.2;
+}
+
+.brewery-list-item p {
+    margin: 4px 0;
+    color: #555;
+    font-size: 0.9em; /* Ajuster la taille pour la densité */
+}
+
+.brewery-list-item p strong {
+    color: #333;
+}
+
+.view-details-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px; /* Ajuster le padding */
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9em; /* Ajuster la taille de police */
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+    white-space: nowrap;
+    align-self: flex-end; /* Aligne le bouton à droite dans son item flex (colonne) */
+}
+
+.view-details-button:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+}
+
+.view-details-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4);
+}
+
+.brewery-list-message {
+    text-align: center;
+    color: #777;
+    margin-top: 50px;
+    font-size: 1.2em;
+}
+
+/* --- Media Queries pour la Responsivité --- */
+
+/* Pour les écrans plus petits que 1200px (ex: tablettes en mode paysage) */
+@media (max-width: 1200px) {
+    .brewery-list-item {
+        width: calc(33.33% - 13.33px); /* 3 éléments par ligne */
+        min-width: 280px;
+    }
+}
+
+/* Pour les écrans plus petits que 900px (ex: tablettes en mode portrait ou grands téléphones) */
+@media (max-width: 900px) {
+    .brewery-list-item {
+        width: calc(50% - 10px); /* 2 éléments par ligne */
+        min-width: 300px;
+    }
+}
+
+/* Pour les écrans très petits (ex: téléphones) */
+@media (max-width: 600px) {
+    .brewery-list-item {
+        width: 100%; /* 1 élément par ligne */
+        min-width: unset;
+        padding: 15px;
+    }
+    .brewery-ul {
+        gap: 15px; /* Réduire l'espacement */
+    }
+    .brewery-list-item h3 {
+        font-size: 1.4em;
+    }
+    .brewery-list-item p {
+        font-size: 0.95em;
+    }
+    .view-details-button {
+        padding: 10px 20px;
+        font-size: 1em;
+        width: 100%; /* Bouton prend toute la largeur */
+    }
+}

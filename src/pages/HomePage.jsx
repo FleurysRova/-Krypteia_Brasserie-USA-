@@ -1,23 +1,22 @@
-// src/components/HomePage.js
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './HomePage.css'; // Gardez l'import des styles pour le contenu principal !
+// src/pages/HomePage.js
 
+import React from 'react';
+import '../pages/HomePage.css'; // Assurez-vous d'avoir vos styles pour la page d'accueil
+
+// HomePage n'a plus besoin de recevoir les props de brasseries
 function HomePage() {
     return (
-        <div className="homepage-main-content" style={{ flexGrow: 1 }}> {/* Ajout de flexGrow pour bien s'étirer */}
-            <section>
-                <h2 className="homepage-section-title">À Propos de l'Application</h2>
-                <p>
-                    L'**Open Brewery Explorer** est votre guide interactif pour découvrir les brasseries artisanales à travers les États-Unis. Que vous soyez un passionné de bière, un voyageur ou simplement curieux, cette application vous permet de localiser facilement des brasseries et d'obtenir des informations essentielles à leur sujet.
-                </p>
-                <p>
-                    Notre application utilise les données de l'<a href="https://www.openbrewerydb.org/" target="_blank" rel="noopener noreferrer">Open Brewery DB API</a>, une source riche et constamment mise à jour sur les brasseries américaines.
-                </p>
-            </section>
-
-            
-        </div>
+        <main className="homepage-main-content">
+            <h2 className="homepage-title">Bienvenue sur Open Brewery Explorer</h2>
+            <p className="homepage-description">
+                Explorez des milliers de brasseries à travers le monde.
+                Utilisez la barre de recherche ci-dessus pour trouver une brasserie par nom,
+                ou changez le mode d'affichage pour voir les résultats sur une carte ou sous forme de liste.
+            </p>
+            {/* Vous pouvez ajouter une image, des liens vers les fonctionnalités principales ici */}
+            {/* Par exemple, si vous voulez un bouton "Commencer l'exploration" */}
+            {/* <Link to="/breweries" className="homepage-button">Commencer l'exploration</Link> */}
+        </main>
     );
 }
 
