@@ -11,7 +11,7 @@ import BreweryList from './components/BreweryList';
 import PaginationControls from './components/PaginationControls';
 import HomePage from './pages/HomePage';
 
-// Importez les fonctions de votre nouveau fichier de service
+// Importez les fonctions de u fichier de service
 import { fetchBreweries as apiFetchBreweries, hasMoreData } from './services/api';
 
 delete L.Icon.Default.prototype._getIconUrl;

@@ -14,52 +14,82 @@ body {
     min-height: 100vh;
 }
 
-/* --- Styles AppHeader --- */
-.app-header {
+/* --- Nouveaux Styles AppHeader --- */
+.app-header-final {
     background-color: #333;
     color: white;
     padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    flex-wrap: wrap;
-    gap: 15px;
+    display: flex; /* Active Flexbox pour aligner les enfants directs */
+    justify-content: space-between; /* Espacement optimal entre les groupes */
+    align-items: center; /* Centrage vertical des éléments */
+    flex-wrap: wrap; /* Permet le retour à la ligne sur les petits écrans */
+    gap: 20px; /* Espace entre les principaux blocs du header */
 }
 
-.header-left {
+.header-group-left {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 10px; /* Espace entre le logo et le titre */
 }
 
-.krypteia-logo {
-    height: 40px; /* Ajustez la taille du logo */
+.krypteia-logo-header {
+    height: 40px; /* Taille du logo */
     width: auto;
-    vertical-align: middle;
 }
 
-.app-title {
+.header-title {
     margin: 0;
     font-size: 1.8em;
-    white-space: nowrap;
+    white-space: nowrap; /* Empêche le titre de se casser sur plusieurs lignes */
 }
 
-.header-center {
-    flex-grow: 1;
-    max-width: 500px;
-    text-align: center;
+.header-title a {
+    color: white;
+    text-decoration: none;
+}
+.header-title a:hover {
+    text-decoration: underline;
 }
 
-.header-right {
+.header-nav-final {
+    display: flex;
+    gap: 15px; /* Espace entre les liens de navigation */
+}
+
+.nav-link-final {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link-final:hover {
+    background-color: #555;
+}
+
+.header-controls-final {
     display: flex;
     align-items: center;
+    gap: 15px; /* Espace entre la barre de recherche et le switch */
+    flex-grow: 1; /* Permet aux contrôles de prendre l'espace restant */
+    justify-content: flex-end; /* Aligne les contrôles à droite */
+    max-width: 500px; /* Limite la largeur pour éviter qu'ils ne s'étirent trop */
 }
 
-/* --- Styles SearchBar --- */
+.api-update-info-final {
+    margin: 0;
+    font-size: 0.85em;
+    color: rgba(255, 255, 255, 0.7);
+    white-space: nowrap; /* Garde la date sur une ligne */
+}
+
+/* --- Styles SearchBar (réutilisation des styles existants) --- */
 .search-bar {
     display: flex;
-    width: 100%;
+    width: 100%; /* Prend la largeur de son conteneur */
+    /* Pas besoin de max-width ici car header-controls-final le gère */
 }
 
 .search-input {
@@ -86,7 +116,7 @@ body {
     background-color: #0056b3;
 }
 
-/* --- Styles ViewSwitcher --- */
+/* --- Styles ViewSwitcher (réutilisation des styles existants) --- */
 .view-switcher-container {
     display: flex;
     gap: 10px;
@@ -112,286 +142,47 @@ body {
     background-color: #e9f5ff;
 }
 
-/* --- Styles BreweryList (pour le style "ancien" en colonnes) --- */
-.brewery-list-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    max-width: 1200px; /* Augmenter la largeur maximale pour 4 colonnes */
-    margin: 20px auto;
-}
-
-.brewery-list-title {
-    color: #333;
-    text-align: center;
-    margin-bottom: 25px;
-    font-size: 2em;
-    border-bottom: 2px solid #007bff;
-    padding-bottom: 10px;
-}
-
-.brewery-ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.brewery-list-item {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    width: calc(25% - 15px); /* 4 éléments par ligne */
-    min-width: 250px;
-}
-
-.brewery-list-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.brewery-info-content {
-    flex-grow: 1;
-    margin-bottom: 10px;
-    width: 100%;
-}
-
-.brewery-list-item h3 {
-    color: #007bff;
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-size: 1.3em;
-    line-height: 1.2;
-}
-
-.brewery-list-item p {
-    margin: 4px 0;
-    color: #555;
-    font-size: 0.9em;
-}
-
-.brewery-list-item p strong {
-    color: #333;
-}
-
-/* Styles du bouton "Voir détails" */
-.view-details-button {
-    background-color: #28a745; /* Vert vif */
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: bold;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
-    white-space: nowrap;
-    align-self: flex-end;
-}
-
-.view-details-button:hover {
-    background-color: #218838;
-    transform: translateY(-1px);
-}
-
-.view-details-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(40, 167, 69, 0.4);
-}
-
-.brewery-list-message {
-    text-align: center;
-    color: #777;
-    margin-top: 50px;
-    font-size: 1.2em;
-}
-
-/* --- Styles BreweryDetails --- */
-.brewery-details-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.brewery-details-content {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    animation: fadeInScale 0.3s ease-out;
-}
-
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-.details-close-button {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 1.8em;
-    cursor: pointer;
-    color: #555;
-    line-height: 1;
-    padding: 5px;
-    transition: color 0.2s ease;
-}
-
-.details-close-button:hover {
-    color: #000;
-}
-
-.brewery-details-content h2 {
-    color: #007bff;
-    margin-top: 0;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 10px;
-}
-
-.brewery-details-content p {
-    margin-bottom: 10px;
-    line-height: 1.6;
-}
-
-.brewery-details-content p strong {
-    color: #333;
-}
-
-.brewery-details-content a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.brewery-details-content a:hover {
-    text-decoration: underline;
-}
-
-/* --- Styles PaginationControls --- */
-.pagination-controls {
-    display: flex;
-    justify-content: center;
-    margin-top: 30px;
-    gap: 15px;
-}
-
-.pagination-controls button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background-color 0.3s ease;
-}
-
-.pagination-controls button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-.pagination-controls button:hover:not(:disabled) {
-    background-color: #0056b3;
-}
-
-/* --- Styles HomePage --- */
-.home-page {
-    text-align: center;
-    padding: 50px 20px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, #f0f2f5, #e0e5ea);
-}
-
-.home-page h1 {
-    font-size: 3em;
-    color: #007bff;
-    margin-bottom: 20px;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.home-page p {
-    font-size: 1.2em;
-    color: #555;
-    margin-bottom: 30px;
-    max-width: 600px;
-    line-height: 1.5;
-}
-
-/* --- Styles AppFooter --- */
-.app-footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 15px 20px;
-    font-size: 0.9em;
-    margin-top: auto; /* Pousse le footer vers le bas */
-}
-
+/* --- Styles BreweryList (et autres composants, gardez les styles précédents) --- */
+/* ... Collez ici le reste de votre App.css tel qu'il était (BreweryList, BreweryDetails, Pagination, etc.) ... */
 
 /* --- Media Queries pour la Responsivité --- */
-
-/* AppHeader */
-@media (max-width: 768px) {
-    .app-header {
-        flex-direction: column;
-        align-items: flex-start;
+@media (max-width: 900px) { /* Ajusté pour mieux gérer les tablettes et petits écrans */
+    .app-header-final {
+        flex-direction: column; /* Empile les éléments verticalement sur petits écrans */
+        align-items: flex-start; /* Aligne le contenu à gauche */
         padding: 15px;
     }
 
-    .header-left, .header-center, .header-right {
-        width: 100%;
+    .header-group-left,
+    .header-nav-final,
+    .header-controls-final,
+    .api-update-info-final {
+        width: 100%; /* Prend toute la largeur disponible */
+        justify-content: center; /* Centre les éléments dans leur propre bloc */
+        text-align: center; /* Centre le texte */
+        margin-bottom: 10px; /* Ajoute un peu d'espace entre les blocs empilés */
+    }
+
+    .header-group-left {
+        justify-content: center; /* Centre le logo et le titre */
+    }
+
+    .header-nav-final {
+        flex-direction: column; /* Empile les liens de navigation */
+        gap: 8px; /* Réduit l'espace entre les liens empilés */
+    }
+
+    .header-controls-final {
+        flex-direction: column; /* Empile la barre de recherche et le switch */
         justify-content: center;
-        text-align: center;
-        margin-bottom: 10px;
     }
 
-    .app-title {
-        font-size: 1.5em;
-    }
-
-    .header-center {
-        max-width: unset;
+    .search-bar {
+        max-width: 100%; /* La barre de recherche prend toute la largeur */
     }
 }
 
-/* BreweryList */
+/* ... Collez ici le reste de vos media queries si elles existent (pour BreweryList, etc.) ... */
 @media (max-width: 1200px) {
     .brewery-list-item {
         width: calc(33.33% - 13.33px); /* 3 éléments par ligne */

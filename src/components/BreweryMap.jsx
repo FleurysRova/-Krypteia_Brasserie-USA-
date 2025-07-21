@@ -4,18 +4,6 @@ import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-
-// Fix pour les icônes Leaflet (peut être nécessaire si non fait globalement dans App.js)
-// Déjà fait dans App.js, mais si vous rencontrez des soucis d'icône, vous pouvez le décommenter
-/*
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-    iconRetinaUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png',
-    iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png',
-    shadowUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-shadow.png',
-});
-*/
-
 // Composant interne pour gérer la logique de la carte et du zoom
 // Il a besoin d'accéder à l'instance de la carte via useMap()
 function MapUpdater({ selectedBrewery }) {

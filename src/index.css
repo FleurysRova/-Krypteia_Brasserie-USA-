@@ -5,8 +5,8 @@
 /* Styles de base pour HTML, Body et l'élément racine de React (#root) */
 /* Ces styles garantissent que l'application occupe toute la hauteur et largeur de la fenêtre */
 html, body, #root {
-  height: 100%; /* Utilise 100% de la hauteur du parent */
-  width: 100%;  /* Utilise 100% de la largeur du parent */
+  height: 100%; 
+  width: 100%;  
   margin: 0;    /* Supprime les marges par défaut du navigateur */
   padding: 0;   /* Supprime les paddings par défaut du navigateur */
   /* overflow-x: hidden; */ /* Optionnel: Empêche le défilement horizontal si non désiré */

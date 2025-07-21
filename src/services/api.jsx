@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = 'https://api.openbrewerydb.org/v1/breweries';
-const ITEMS_PER_PAGE = 10; // Gardons cette constante ici car elle est liée directement à l'API
+const ITEMS_PER_PAGE = 20; // Gardons cette constante ici car elle est liée directement à l'API
 
 /**
  * Récupère une liste de brasseries depuis l'API.
@@ -20,7 +20,6 @@ export const fetchBreweries = async (page, query) => {
         }
 
         const response = await axios.get(BASE_URL, { params });
-        // L'API peut renvoyer un tableau vide si aucune brasserie n'est trouvée pour la page/recherche
         return response.data;
     } catch (error) {
         console.error("Erreur lors de la récupération des brasseries depuis l'API:", error);
