@@ -1,73 +1,45 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+#  Open Brewery Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Krypteia Logo](src/assets/krypteia-logo.png)
 
-Currently, two official plugins are available:
+Bienvenue sur **Open Brewery Explorer** ! Cette application web interactive, développée avec **React**, **TypeScript**, et **Vite**, vous permet de découvrir et d'explorer une vaste base de données de brasseries à travers le monde. Que vous soyez un amateur de bière ou simplement curieux, trouvez des informations détaillées et naviguez facilement à travers un catalogue riche et diversifié.
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+##  Fonctionnalités Clés
 
-## Expanding the ESLint configuration
+* **Recherche Intuitive :** Trouvez rapidement des brasseries spécifiques en utilisant la barre de recherche par nom.
+* **Pagination Efficace :** Naviguez sans effort à travers les résultats de recherche, avec 10 brasseries affichées par page pour une meilleure lisibilité.
+* **Détails Complets des Brasseries :** Cliquez sur une brasserie pour afficher des informations détaillées telles que l'adresse, le type de brasserie, le site web officiel, et plus encore.
+* **Interface Réactive :** Profitez d'une expérience utilisateur fluide et optimisée sur tous les appareils (ordinateurs de bureau, tablettes et smartphones).
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+##  Démarrage Rapide
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Suivez ces étapes simples pour configurer et lancer l'application sur votre machine locale.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Prérequis
+Avant de commencer, assurez-vous que les logiciels suivants sont installés sur votre système :
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* **Node.js** (version 14 ou supérieure recommandée)
+* **npm** (Node Package Manager) ou **Yarn**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Installation
+1.  **Cloner le dépôt :**
+    Ouvrez votre terminal ou invite de commande, puis clonez le projet depuis GitHub :
+    ```bash
+    git clone [https://github.com/FleurysRova/Krypteia_Brasserie-USA.git](https://github.com/FleurysRova/-Krypteia_Brasserie-USA-)
+    cd Krypteia_Brasserie-USA
+    ```
+    
+2.  **Installer les dépendances :**
+    Une fois dans le répertoire du projet, installez toutes les dépendances nécessaires :
+    ```bash
+    npm install
+    ```
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-=======
-# Krypteia_Brasserie-USA
->>>>>>> 0430956e4130034961360643d5ef63edd8d43593
+### Lancement de l'Application
+Après l'installation, vous pouvez démarrer l'application en mode développement :
+
+```bash
+npm start
