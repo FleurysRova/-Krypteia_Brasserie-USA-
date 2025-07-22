@@ -1,45 +1,51 @@
-#  Open Brewery Explorer
+# Open Brewery Explorer
 
 ![Krypteia Logo](src/assets/krypteia-logo.png)
 
-Bienvenue sur **Open Brewery Explorer** ! Cette application web interactive, développée avec **React**, **TypeScript**, et **Vite**, vous permet de découvrir et d'explorer une vaste base de données de brasseries à travers le monde. Que vous soyez un amateur de bière ou simplement curieux, trouvez des informations détaillées et naviguez facilement à travers un catalogue riche et diversifié.
+Bienvenue sur **Open Brewery Explorer** !  
+Cette application web interactive, développée avec **React**, **TypeScript**, **Vite**, **Tailwind CSS** et **React Leaflet**, vous permet de découvrir et d'explorer une vaste base de données de brasseries à travers le monde.
+
+
 ---
 
 ##  Fonctionnalités Clés
 
-* **Recherche Intuitive :** Trouvez rapidement des brasseries spécifiques en utilisant la barre de recherche par nom.
-* **Pagination Efficace :** Naviguez sans effort à travers les résultats de recherche, avec 10 brasseries affichées par page pour une meilleure lisibilité.
-* **Détails Complets des Brasseries :** Cliquez sur une brasserie pour afficher des informations détaillées telles que l'adresse, le type de brasserie, le site web officiel, et plus encore.
-* **Interface Réactive :** Profitez d'une expérience utilisateur fluide et optimisée sur tous les appareils (ordinateurs de bureau, tablettes et smartphones).
+-  **Recherche Intuitive** : Trouvez rapidement des brasseries spécifiques en utilisant la barre de recherche par nom.
+-  **Pagination Efficace** : Naviguez facilement à travers les résultats, avec 10 brasseries par page pour plus de lisibilité.
+-  **Détails Complet** : Cliquez sur une brasserie pour consulter son adresse, type, site web et plus.
+-  **Carte Interactive** : Visualisez les brasseries sur une carte avec **React Leaflet**.
+-  **Interface Responsive** : Optimisée pour bureau, tablette et mobile avec **Tailwind CSS**.
+
+---
+
+##  Technologies Utilisées
+
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React Leaflet](https://react-leaflet.js.org/)
+<!-- - [Open Brewery DB API](https://www.openbrewerydb.org/) -->
 
 ---
 
 ##  Démarrage Rapide
 
-Suivez ces étapes simples pour configurer et lancer l'application sur votre machine locale.
+###  Prérequis
 
-### Prérequis
-Avant de commencer, assurez-vous que les logiciels suivants sont installés sur votre système :
+Assurez-vous d’avoir installé :
 
-* **Node.js** (version 14 ou supérieure recommandée)
-* **npm** (Node Package Manager) ou **Yarn**
+- **Node.js** (version ≥ 14 recommandé)
+- **npm** ou **yarn**
 
-### Installation
-1.  **Cloner le dépôt :**
-    Ouvrez votre terminal ou invite de commande, puis clonez le projet depuis GitHub :
-    ```bash
-    git clone [https://github.com/FleurysRova/Krypteia_Brasserie-USA.git](https://github.com/FleurysRova/-Krypteia_Brasserie-USA-)
-    cd Krypteia_Brasserie-USA
-    ```
-    
-2.  **Installer les dépendances :**
-    Une fois dans le répertoire du projet, installez toutes les dépendances nécessaires :
-    ```bash
-    npm install
-    ```
+---
 
-### Lancement de l'Application
-Après l'installation, vous pouvez démarrer l'application en mode développement :
+###  Installation des dépendances
+
+Dans le terminal, à la racine du projet, exécute :
+#####  npm run dev 
 
 ```bash
-npm start
+npm install
+# ou avec yarn
+# yarn install
